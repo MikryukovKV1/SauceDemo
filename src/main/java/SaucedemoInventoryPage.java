@@ -23,4 +23,12 @@ public class SaucedemoInventoryPage {
     WebElement elementXpPreced = driver.findElement(By.xpath("//*[@id=\"add-to-cart-sauce-labs-backpack\"]/preceding::div[contains(text(),\"$\")]"));
     WebElement elementXpFollow = driver.findElement(By.xpath("//*[@id=\"add-to-cart-sauce-labs-onesie\"]/following::div[contains(text(),\"$\")]"));
     WebElement elementXpDescen = driver.findElement(By.xpath("//div[@class=\"inventory_item\"]/descendant::a[@id=\"item_3_title_link\"]"));
+    WebElement elementXpOr = driver.findElement(By.xpath("//a[@class=\"inventory_list\" or @id=\"item_2_title_link\"]"));
+
+    WebElement elementCssClass = driver.findElement(By.cssSelector(".active_option"));
+    WebElement elementCss = driver.findElement(By.cssSelector(".btn.btn_primary"));
+    WebElement elementCssId = driver.findElement(By.cssSelector("#inventory_sidebar_link"));
+    WebElement elementCssAttr = driver.findElement(By.cssSelector("a[data-test=\"item-3-title-link\"]"));
+    WebElement elementCssAttrAndClass = driver.findElement(By.cssSelector("div[data-test=\"header-container\"] .shopping_cart_link"));
+
 }
