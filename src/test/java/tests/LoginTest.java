@@ -19,20 +19,20 @@ public class LoginTest extends BaseTest {
     public void lockedLogin(){
         loginPage.open();
         loginPage.login("locked_out_user", "secret_sauce");
-        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'Epic sadface')]")).getText(), "Epic sadface: Sorry, this user has been locked out.");
+        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'user has been locked')]")).getText(), "Epic sadface: Sorry, this user has been locked out.");
     }
 
     @Test
     public void notCorrectPassword(){
         loginPage.open();
         loginPage.login("standard_user", "secret");
-        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'Epic sadface')]")).getText(), "Epic sadface: Username and password do not match any user in this service");
+        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'password do not match')]")).getText(), "Epic sadface: Username and password do not match any user in this service");
     }
 
     @Test
     public void emptyPassword(){
         loginPage.open();
         loginPage.login("standard_user", "");
-        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'Epic sadface')]")).getText(), "Epic sadface: Password is required");
+        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'Password is required')]")).getText(), "Epic sadface: Password is required");
     }
 }
