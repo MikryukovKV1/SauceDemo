@@ -14,11 +14,11 @@ public class SauceLoginPage {
         this.driver = driver;
     }
 
-    public void open(){
+    public void open() {
         driver.get("https://www.saucedemo.com/");
     }
 
-    public void login(String usrename, String password){
+    public void login(String usrename, String password) {
         driver.findElement(USERNAME_INPUT).sendKeys(usrename);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).submit();
