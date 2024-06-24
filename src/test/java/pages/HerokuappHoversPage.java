@@ -6,54 +6,27 @@ import org.openqa.selenium.interactions.Actions;
 
 public class HerokuappHoversPage extends BasePage {
 
-    private final By LINK_NAME_1 = By.xpath("//a[@href='/users/1']");
-    private final By LINK_NAME_2 = By.xpath("//a[@href='/users/2']");
-    private final By LINK_NAME_3 = By.xpath("//a[@href='/users/3']");
-    private final By NAME_1 = By.xpath("//*[text()='name: user1']");
-    private final By NAME_2 = By.xpath("//*[text()='name: user2']");
-    private final By NAME_3 = By.xpath("//*[text()='name: user3']");
-    private final By PROFILE_1 = By.xpath("//*[text()='name: user1']/ancestor::div[@class='figure']");
-    private final By PROFILE_2 = By.xpath("//*[text()='name: user2']/ancestor::div[@class='figure']");
-    private final By PROFILE_3 = By.xpath("//*[text()='name: user3']/ancestor::div[@class='figure']");
+    private final String LINK_NAME_1_PATTERN = "//a[@href='/users/%s']";
+    private final String NAME_1_PATTERN = "//*[text()='name: user%s']";
+    private final String PROFILE_1_PATTERN = "//*[text()='name: user%s']/ancestor::div[@class='figure']";
     Actions actions = new Actions(driver);
 
     public HerokuappHoversPage(WebDriver driver) {
         super(driver);
     }
 
-    public void hoveringProfile_1() {
-        actions.moveToElement(driver.findElement(PROFILE_1)).perform();
+    public void hoveringProfile(String numberProfile) {
+        By PROFILE = By.xpath(String.format(PROFILE_1_PATTERN, numberProfile));
+        actions.moveToElement(driver.findElement(PROFILE)).perform();
     }
 
-    public void hoveringProfile_2() {
-        actions.moveToElement(driver.findElement(PROFILE_2)).perform();
+    public String getName(String numberName) {
+        By NAME = By.xpath(String.format(NAME_1_PATTERN, numberName));
+        return driver.findElement(NAME).getText();
     }
 
-    public void hoveringProfile_3() {
-        actions.moveToElement(driver.findElement(PROFILE_3)).perform();
-    }
-
-    public String getName_1() {
-        return driver.findElement(NAME_1).getText();
-    }
-
-    public String getName_2() {
-        return driver.findElement(NAME_2).getText();
-    }
-
-    public String getName_3() {
-        return driver.findElement(NAME_3).getText();
-    }
-
-    public void clickLinkName_1() {
-        driver.findElement(LINK_NAME_1).click();
-    }
-
-    public void clickLinkName_2() {
-        driver.findElement(LINK_NAME_2).click();
-    }
-
-    public void clickLinkName_3() {
-        driver.findElement(LINK_NAME_3).click();
+    public void clickLinkName(String numberName) {
+        By LINK_NAME = By.xpath(String.format(LINK_NAME_1_PATTERN, numberName));
+        driver.findElement(LINK_NAME).click();
     }
 }

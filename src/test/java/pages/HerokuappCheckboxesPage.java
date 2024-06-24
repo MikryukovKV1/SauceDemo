@@ -20,19 +20,11 @@ public class HerokuappCheckboxesPage extends BasePage {
         driver.findElement(CHECKBOX_2).click();
     }
 
-    public boolean uncheckedOneCheckbox() {
-        return driver.findElement(CHECKBOX_1).isSelected();
-    }
-
     public boolean checkedOneCheckbox() {
         return driver.findElement(CHECKBOX_1).isSelected();
     }
 
     public boolean checkedTwoCheckbox() {
-        return driver.findElement(CHECKBOX_2).isSelected();
-    }
-
-    public boolean uncheckedTwoCheckbox() {
         return driver.findElement(CHECKBOX_2).isSelected();
     }
 
