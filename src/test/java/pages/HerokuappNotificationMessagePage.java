@@ -6,28 +6,25 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HerokuappNotificationMessagePage extends BasePage {
 
-    private final By LINK_HERE = By.xpath("//a[text()='Click here']");
-    private final By NOTIFIC_TEXT = By.xpath("//*[contains(text(),'successful')]");
-    private final By NOTIFIC_TEXT2 = By.xpath("//*[contains(text(),'unsuccesful')]");
+    private final By CLICK_HERE = By.xpath("//a[text()='Click here']");
     private final By NOTIFIC = By.xpath("//div[@id='flash']");
 
     public HerokuappNotificationMessagePage(WebDriver driver) {
         super(driver);
     }
 
-    public void waitText() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(NOTIFIC));
-    }
-
     public void clickLink() {
-        driver.findElement(LINK_HERE).click();
+        driver.findElement(CLICK_HERE).click();
     }
 
-    public String getTextNotif() {
-        return driver.findElement(NOTIFIC_TEXT).getText();
-    }
-
-    public String getTextNotifER() {
-        return driver.findElement(NOTIFIC_TEXT2).getText();
+    public boolean clickToTheSuccessfulStatus() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(NOTIFIC));
+        for (int i = 0; i < 10; i++) {
+            clickLink();
+            if (driver.findElement(NOTIFIC).getText().contains("Action successful")) {
+                return true;
+            }
+        }
+        return false;
     }
 }
