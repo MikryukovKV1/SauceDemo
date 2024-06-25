@@ -9,7 +9,6 @@ public class HerokuappHoversPage extends BasePage {
     private final String LINK_NAME_1_PATTERN = "//a[@href='/users/%s']";
     private final String NAME_1_PATTERN = "//*[text()='name: user%s']";
     private final String PROFILE_1_PATTERN = "//*[text()='name: user%s']/ancestor::div[@class='figure']";
-    Actions actions = new Actions(driver);
 
     public HerokuappHoversPage(WebDriver driver) {
         super(driver);

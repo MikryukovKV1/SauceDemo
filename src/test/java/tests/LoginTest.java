@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -9,29 +8,29 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void correctLogin() {
-        loginPage.open();
+        open("https://www.saucedemo.com/");
         loginPage.login("standard_user", "secret_sauce");
-        assertEquals(driver.findElement(By.cssSelector("[class=title]")).getText(), "Products");
+        assertEquals(loginPage.getTextCorrectLogin(), "Products");
     }
 
     @Test
-    public void lockedLogin(){
-        loginPage.open();
+    public void lockedLogin() {
+        open("https://www.saucedemo.com/");
         loginPage.login("locked_out_user", "secret_sauce");
-        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'user has been locked')]")).getText(), "Epic sadface: Sorry, this user has been locked out.");
+        assertEquals(loginPage.getTextLockedLogin(), "Epic sadface: Sorry, this user has been locked out.");
     }
 
     @Test
-    public void notCorrectPassword(){
-        loginPage.open();
+    public void notCorrectPassword() {
+        open("https://www.saucedemo.com/");
         loginPage.login("standard_user", "secret");
-        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'password do not match')]")).getText(), "Epic sadface: Username and password do not match any user in this service");
+        assertEquals(loginPage.getTextNotCorrectPassword(), "Epic sadface: Username and password do not match any user in this service");
     }
 
     @Test
-    public void emptyPassword(){
-        loginPage.open();
+    public void emptyPassword() {
+        open("https://www.saucedemo.com/");
         loginPage.login("standard_user", "");
-        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'Password is required')]")).getText(), "Epic sadface: Password is required");
+        assertEquals(loginPage.getTextEmptyPassword(), "Epic sadface: Password is required");
     }
 }

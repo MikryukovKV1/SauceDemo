@@ -21,6 +21,10 @@ public class BaseTest {
     HerokuappHoversPage hoversPage;
     HerokuappHoversProfilePage hoversProfilePage;
     HerokuappNotificationMessagePage notificationMessagePage;
+    HerokuappContextMenuPage contextMenuPage;
+    HerokuappDynamicControlsPage dynamicControlsPage;
+    SauceProductPage productPage;
+    SauceCartPage cartPage;
 
     public void open(String url) {
         driver.get(url);
@@ -40,6 +44,10 @@ public class BaseTest {
         hoversPage = new HerokuappHoversPage(driver);
         hoversProfilePage = new HerokuappHoversProfilePage(driver);
         notificationMessagePage = new HerokuappNotificationMessagePage(driver);
+        contextMenuPage = new HerokuappContextMenuPage(driver);
+        dynamicControlsPage = new HerokuappDynamicControlsPage(driver);
+        productPage = new SauceProductPage(driver);
+        cartPage = new SauceCartPage(driver);
     }
 
     @AfterMethod(alwaysRun = true)
