@@ -25,6 +25,9 @@ public class BaseTest {
     HerokuappDynamicControlsPage dynamicControlsPage;
     SauceProductPage productPage;
     SauceCartPage cartPage;
+    HerokuappInputsPage inputsPage;
+    HerokuappFramesPage framesPage;
+    HerokuappIFramesPage iFramesPage;
 
     public void open(String url) {
         driver.get(url);
@@ -48,6 +51,9 @@ public class BaseTest {
         dynamicControlsPage = new HerokuappDynamicControlsPage(driver);
         productPage = new SauceProductPage(driver);
         cartPage = new SauceCartPage(driver);
+        inputsPage = new HerokuappInputsPage(driver);
+        framesPage = new HerokuappFramesPage(driver);
+        iFramesPage = new HerokuappIFramesPage(driver);
     }
 
     @AfterMethod(alwaysRun = true)

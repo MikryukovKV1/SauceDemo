@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class HerokuappDynamicControlsPage extends BasePage {
 
     private final By BUTTON_REMOVE = By.xpath("//button[@onclick='swapCheckbox()']");
-    private final By CHECKBOX = By.xpath("//*[text()=' A checkbox']");         //*[text()=' A checkbox']  //div[@id='checkbox']
+    private final By CHECKBOX = By.xpath("//*[text()=' A checkbox']");
     private final By TEXT_ITS_GONE = By.xpath("//p[@id='message']");
 
     public HerokuappDynamicControlsPage(WebDriver driver) {

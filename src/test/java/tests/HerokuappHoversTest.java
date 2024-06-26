@@ -1,53 +1,43 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.*;
 
 public class HerokuappHoversTest extends BaseTest {
 
-    @Test
-    public void profileNameCheck_1() {
-        open("http://the-internet.herokuapp.com/hovers");
-        hoversPage.hoveringProfile("1");
-        assertEquals(hoversPage.getName("1"), "name: user1");
+    @DataProvider
+    public Object[][] nameCheckData() {
+        return new Object[][]{
+                {"1", "1", "name: user1"},
+                {"2", "2", "name: user2"},
+                {"3", "3", "name: user3"}
+        };
     }
 
-    @Test
-    public void profileNameCheck_2() {
+    @Test(dataProvider = "nameCheckData")
+    public void profileNameCheck(String numberProfile, String numberName, String expectedMessage) {
         open("http://the-internet.herokuapp.com/hovers");
-        hoversPage.hoveringProfile("2");
-        assertEquals(hoversPage.getName("2"), "name: user2");
+        hoversPage.hoveringProfile(numberProfile);
+        assertEquals(hoversPage.getName(numberName), expectedMessage);
     }
 
-    @Test
-    public void profileNameCheck_3() {
-        open("http://the-internet.herokuapp.com/hovers");
-        hoversPage.hoveringProfile("3");
-        assertEquals(hoversPage.getName("3"), "name: user3");
+    @DataProvider
+    public Object[][] checkErrorProfileData() {
+        return new Object[][]{
+                {"1", "1"},
+                {"2", "2"},
+                {"3", "3"}
+        };
     }
 
-    @Test
-    public void checkNotErrorProfile_1() {
+    @Test(dataProvider = "checkErrorProfileData")
+    public void checkErrorProfile(String numberProfile, String numberName) {
         open("http://the-internet.herokuapp.com/hovers");
-        hoversPage.hoveringProfile("1");
-        hoversPage.clickLinkName("1");
+        hoversPage.hoveringProfile(numberProfile);
+        hoversPage.clickLinkName(numberName);
         assertFalse(hoversProfilePage.getTextError());
     }
 
-    @Test
-    public void checkNotErrorProfile_2() {
-        open("http://the-internet.herokuapp.com/hovers");
-        hoversPage.hoveringProfile("2");
-        hoversPage.clickLinkName("2");
-        assertFalse(hoversProfilePage.getTextError());
-    }
-
-    @Test
-    public void checkNotErrorProfile_3() {
-        open("http://the-internet.herokuapp.com/hovers");
-        hoversPage.hoveringProfile("3");
-        hoversPage.clickLinkName("3");
-        assertFalse(hoversProfilePage.getTextError());
-    }
 }

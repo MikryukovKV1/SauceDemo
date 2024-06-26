@@ -1,36 +1,40 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
 
-    @Test
-    public void correctLogin() {
-        open("https://www.saucedemo.com/");
-        loginPage.login("standard_user", "secret_sauce");
-        assertEquals(loginPage.getTextCorrectLogin(), "Products");
+    @DataProvider
+    public Object[][] correctLogData() {
+        return new Object[][]{
+                {"standard_user", "secret_sauce", "Products"}
+        };
     }
 
-    @Test
-    public void lockedLogin() {
+    @Test(dataProvider = "correctLogData")
+    public void correctLoginPageTest(String username, String password, String expectedMessage) {
         open("https://www.saucedemo.com/");
-        loginPage.login("locked_out_user", "secret_sauce");
-        assertEquals(loginPage.getTextLockedLogin(), "Epic sadface: Sorry, this user has been locked out.");
+        loginPage.login(username, password);
+        assertEquals(loginPage.getMessageProductPage(), expectedMessage);
     }
 
-    @Test
-    public void notCorrectPassword() {
-        open("https://www.saucedemo.com/");
-        loginPage.login("standard_user", "secret");
-        assertEquals(loginPage.getTextNotCorrectPassword(), "Epic sadface: Username and password do not match any user in this service");
+    @DataProvider
+    public Object[][] notCorrectLogData() {
+        return new Object[][]{
+                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
+                {"standard_user", "secret", "Epic sadface: Username and password do not match any user in this service"},
+                {"standard_user", "", "Epic sadface: Password is required"}
+        };
     }
 
-    @Test
-    public void emptyPassword() {
+    @Test(dataProvider = "notCorrectLogData")
+    public void lockedLogin(String username, String password, String expectedMessage) {
         open("https://www.saucedemo.com/");
-        loginPage.login("standard_user", "");
-        assertEquals(loginPage.getTextEmptyPassword(), "Epic sadface: Password is required");
+        loginPage.login(username, password);
+        assertEquals(loginPage.getErrorMessage(), expectedMessage);
     }
+
 }
