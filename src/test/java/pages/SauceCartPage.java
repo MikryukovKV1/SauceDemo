@@ -23,5 +23,4 @@ public class SauceCartPage extends BasePage {
         }
         return names;
     }
-
 }

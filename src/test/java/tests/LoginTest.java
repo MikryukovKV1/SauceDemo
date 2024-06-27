@@ -7,18 +7,11 @@ import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
 
-    @DataProvider
-    public Object[][] correctLogData() {
-        return new Object[][]{
-                {"standard_user", "secret_sauce", "Products"}
-        };
-    }
-
-    @Test(dataProvider = "correctLogData")
-    public void correctLoginPageTest(String username, String password, String expectedMessage) {
-        open("https://www.saucedemo.com/");
-        loginPage.login(username, password);
-        assertEquals(loginPage.getMessageProductPage(), expectedMessage);
+    @Test
+    public void correctLoginPageTest() {
+        openSaucedemo();
+        loginPage.login("standard_user", "secret_sauce");
+        assertEquals(loginPage.getMessageProductPage(), "Products");
     }
 
     @DataProvider
@@ -32,7 +25,7 @@ public class LoginTest extends BaseTest {
 
     @Test(dataProvider = "notCorrectLogData")
     public void lockedLogin(String username, String password, String expectedMessage) {
-        open("https://www.saucedemo.com/");
+        openSaucedemo();
         loginPage.login(username, password);
         assertEquals(loginPage.getErrorMessage(), expectedMessage);
     }

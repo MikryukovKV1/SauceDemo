@@ -22,6 +22,4 @@ public class HerokuappDynamicControlsPage extends BasePage {
     public boolean isDisplayedCheckbox() {
         return !driver.findElements(CHECKBOX).isEmpty();
     }
-
-
 }

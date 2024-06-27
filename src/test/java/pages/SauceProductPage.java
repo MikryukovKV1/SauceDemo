@@ -25,5 +25,4 @@ public class SauceProductPage extends BasePage {
     public void openCart() {
         driver.findElement(CART_LINK).click();
     }
-
 }

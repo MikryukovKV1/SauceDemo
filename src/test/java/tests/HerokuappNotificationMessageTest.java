@@ -8,7 +8,7 @@ public class HerokuappNotificationMessageTest extends BaseTest {
 
     @Test
     public void checkingText() {
-        open("http://the-internet.herokuapp.com/notification_message_rendered");
+        openHerokuapp("/notification_message_rendered");
         notificationMessagePage.clickLink();
         assertTrue(notificationMessagePage.clickToTheSuccessfulStatus());
     }

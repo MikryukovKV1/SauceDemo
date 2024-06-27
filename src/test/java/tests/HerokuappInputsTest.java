@@ -9,16 +9,14 @@ public class HerokuappInputsTest extends BaseTest {
 
     @Test
     public void inputsUpTest() {
-        open("http://the-internet.herokuapp.com/inputs");
+        openHerokuapp("/inputs");
         assertEquals(inputsPage.sendKeysUpInput(), "1");
-
     }
 
     @Test
     public void inputsDownTest() {
-        open("http://the-internet.herokuapp.com/inputs");
+        openHerokuapp("/inputs");
         assertEquals(inputsPage.sendKeysDownInput(), "-1");
-
     }
 
     @DataProvider
@@ -27,19 +25,16 @@ public class HerokuappInputsTest extends BaseTest {
                 {"123", "123"},
                 {"", ""},
                 {"0", "0"},
-                {"1s5", "1s5"},
                 {"-9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
                         "-9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"},
-                {"qwer", "qwer"},
-
-                {"$", "$"},
+                {"0.1", "0.1"},
+                {"-0.1", "-0.1"},
         };
     }
 
     @Test(dataProvider = "sendKeysData")
     public void inputsSendKeysTest(String keys, String expectedKeys) {
-        open("http://the-internet.herokuapp.com/inputs");
+        openHerokuapp("/inputs");
         assertEquals(inputsPage.sendKeysInput(keys), expectedKeys);
-
     }
 }

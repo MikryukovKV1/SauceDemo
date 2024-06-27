@@ -15,18 +15,15 @@ public class HerokuappInputsPage extends BasePage {
     public String sendKeysUpInput() {
         driver.findElement(INPUT_NUMBER).sendKeys(Keys.ARROW_UP);
         return driver.findElement(INPUT_NUMBER).getAttribute("value");
-
     }
 
     public String sendKeysDownInput() {
         driver.findElement(INPUT_NUMBER).sendKeys(Keys.ARROW_DOWN);
         return driver.findElement(INPUT_NUMBER).getAttribute("value");
-
     }
 
     public String sendKeysInput(String keys) {
         driver.findElement(INPUT_NUMBER).sendKeys(keys);
         return driver.findElement(INPUT_NUMBER).getAttribute("value");
-
     }
 }

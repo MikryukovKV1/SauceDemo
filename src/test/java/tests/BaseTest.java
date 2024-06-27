@@ -4,7 +4,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
@@ -28,9 +27,14 @@ public class BaseTest {
     HerokuappInputsPage inputsPage;
     HerokuappFramesPage framesPage;
     HerokuappIFramesPage iFramesPage;
+    final String BASE_URL_HEROKUAPP = "http://the-internet.herokuapp.com";
+    final String BASE_URL_SAUCEDEMO = "https://www.saucedemo.com/";
 
-    public void open(String url) {
-        driver.get(url);
+    public void openHerokuapp(String url) {
+        driver.get(BASE_URL_HEROKUAPP + url);
+    }
+    public void openSaucedemo() {
+        driver.get(BASE_URL_SAUCEDEMO);
     }
 
     @BeforeMethod

@@ -29,5 +29,4 @@ public class SauceLoginPage {
     public String getErrorMessage() {
         return driver.findElement(ERROR_TEXT_MESSAGE).getText();
     }
-
 }

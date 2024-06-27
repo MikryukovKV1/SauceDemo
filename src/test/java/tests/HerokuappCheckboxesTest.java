@@ -6,7 +6,7 @@ public class HerokuappCheckboxesTest extends BaseTest {
 
     @Test
     public void uncheckedOneCheckbox() {
-        open("http://the-internet.herokuapp.com/checkboxes");
+        openHerokuapp("/checkboxes");
         assertFalse(checkboxesPage.checkedOneCheckbox());
         checkboxesPage.clickOneCheckbox();
         assertTrue(checkboxesPage.checkedOneCheckbox());
@@ -14,7 +14,7 @@ public class HerokuappCheckboxesTest extends BaseTest {
 
     @Test
     public void checkedTwoCheckbox() {
-        open("http://the-internet.herokuapp.com/checkboxes");
+        openHerokuapp("/checkboxes");
         assertTrue(checkboxesPage.checkedTwoCheckbox());
         checkboxesPage.clickTwoCheckbox();
         assertFalse(checkboxesPage.checkedTwoCheckbox());

@@ -8,7 +8,7 @@ public class HerokuappDynamicControlsTest extends BaseTest {
 
     @Test
     public void checkTextAlert() {
-        open("http://the-internet.herokuapp.com/dynamic_controls");
+        openHerokuapp("/dynamic_controls");
         dynamicControlsPage.waitTextItsGone();
         assertFalse(dynamicControlsPage.isDisplayedCheckbox());
     }

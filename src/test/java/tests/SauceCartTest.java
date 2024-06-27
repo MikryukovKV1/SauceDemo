@@ -8,7 +8,7 @@ public class SauceCartTest extends BaseTest {
 
     @Test
     public void buyProducts() {
-        open("https://www.saucedemo.com/");
+        openSaucedemo();
         loginPage.login("standard_user", "secret_sauce");
         productPage.addToCart(0);
         productPage.addToCart(3);
@@ -21,7 +21,7 @@ public class SauceCartTest extends BaseTest {
 
     @Test
     public void buyProductsStringFormat() {
-        open("https://www.saucedemo.com/");
+        openSaucedemo();
         loginPage.login("standard_user", "secret_sauce");
         productPage.addToCart("Sauce Labs Backpack");
         productPage.addToCart("Sauce Labs Fleece Jacket");

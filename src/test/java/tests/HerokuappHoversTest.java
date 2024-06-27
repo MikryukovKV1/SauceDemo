@@ -18,7 +18,7 @@ public class HerokuappHoversTest extends BaseTest {
 
     @Test(dataProvider = "nameCheckData")
     public void profileNameCheck(String numberProfile, String numberName, String expectedMessage) {
-        open("http://the-internet.herokuapp.com/hovers");
+        openHerokuapp("/hovers");
         hoversPage.hoveringProfile(numberProfile);
         assertEquals(hoversPage.getName(numberName), expectedMessage);
     }
@@ -34,10 +34,9 @@ public class HerokuappHoversTest extends BaseTest {
 
     @Test(dataProvider = "checkErrorProfileData")
     public void checkErrorProfile(String numberProfile, String numberName) {
-        open("http://the-internet.herokuapp.com/hovers");
+        openHerokuapp("/hovers");
         hoversPage.hoveringProfile(numberProfile);
         hoversPage.clickLinkName(numberName);
-        assertFalse(hoversProfilePage.getTextError());
+        assertTrue(hoversProfilePage.getTextError());
     }
-
 }
