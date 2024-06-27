@@ -8,7 +8,7 @@ public class HerokuappIFramesTest extends BaseTest {
     @Test
     public void comparisonTextParagraphTest() {
         openHerokuapp("/frames");
-        framesPage.transitionIFramesPage();
-        assertEquals(iFramesPage.getTextParagraph(), "Your content goes here.");
+        assertEquals(framesPage.transitionIFramesPage()
+                                .getTextParagraph(), "Your content goes here.");
     }
 }

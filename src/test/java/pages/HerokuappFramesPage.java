@@ -11,7 +11,8 @@ public class HerokuappFramesPage extends BasePage{
         super(driver);
     }
 
-    public void transitionIFramesPage() {
+    public HerokuappIFramesPage transitionIFramesPage() {
         driver.findElement(LINK_IFRAMES).click();
+        return new HerokuappIFramesPage(driver);
     }
 }

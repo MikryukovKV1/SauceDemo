@@ -23,8 +23,9 @@ public class HerokuappHoversPage extends BasePage {
         return driver.findElement(NAME).getText();
     }
 
-    public void clickLinkName(String numberName) {
+    public HerokuappHoversProfilePage clickLinkName(String numberName) {
         By LINK_NAME = By.xpath(String.format(LINK_NAME_1_PATTERN, numberName));
         driver.findElement(LINK_NAME).click();
+        return new HerokuappHoversProfilePage(driver);
     }
 }

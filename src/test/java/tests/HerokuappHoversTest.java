@@ -36,7 +36,6 @@ public class HerokuappHoversTest extends BaseTest {
     public void checkErrorProfile(String numberProfile, String numberName) {
         openHerokuapp("/hovers");
         hoversPage.hoveringProfile(numberProfile);
-        hoversPage.clickLinkName(numberName);
-        assertTrue(hoversProfilePage.getTextError());
+        assertTrue(hoversPage.clickLinkName(numberName).getTextError());
     }
 }

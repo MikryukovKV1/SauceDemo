@@ -10,8 +10,8 @@ public class LoginTest extends BaseTest {
     @Test
     public void correctLoginPageTest() {
         openSaucedemo();
-        loginPage.login("standard_user", "secret_sauce");
-        assertEquals(loginPage.getMessageProductPage(), "Products");
+        assertEquals(loginPage.login("standard_user", "secret_sauce")
+                                .getMessageProductPage(), "Products");
     }
 
     @DataProvider
