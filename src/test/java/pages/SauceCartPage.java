@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,7 @@ public class SauceCartPage extends BasePage {
         super(driver);
     }
 
+    @Step("Получение списка добавленых в корзину товаров")
     public ArrayList<String> getProducts() {
         List<WebElement> allProducts = driver.findElements(PRODUCTS_NAME);
         ArrayList<String> names = new ArrayList<>();

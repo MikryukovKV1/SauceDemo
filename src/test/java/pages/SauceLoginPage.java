@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -14,6 +15,7 @@ public class SauceLoginPage extends BasePage{
         super(driver);
     }
 
+    @Step("Авторизация на сайте {username}, {password}")
     public SauceProductPage login(String username, String password) {
         driver.findElement(USERNAME_INPUT).sendKeys(username);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
@@ -21,6 +23,7 @@ public class SauceLoginPage extends BasePage{
         return new SauceProductPage(driver);
     }
 
+    @Step("Получение сообщения об ошибке")
     public String getErrorMessage() {
         return driver.findElement(ERROR_TEXT_MESSAGE).getText();
     }
