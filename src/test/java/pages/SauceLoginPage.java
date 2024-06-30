@@ -3,6 +3,7 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.AllureUtils;
 
 public class SauceLoginPage extends BasePage{
 
@@ -25,6 +26,8 @@ public class SauceLoginPage extends BasePage{
 
     @Step("Получение сообщения об ошибке")
     public String getErrorMessage() {
+        AllureUtils.takeScreenshot(driver);
         return driver.findElement(ERROR_TEXT_MESSAGE).getText();
+
     }
 }

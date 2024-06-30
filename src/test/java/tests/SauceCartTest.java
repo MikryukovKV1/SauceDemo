@@ -6,7 +6,7 @@ import static org.testng.Assert.assertTrue;
 
 public class SauceCartTest extends BaseTest {
 
-    @Test
+    @Test(description = "проверка, что добавленные в корзину товары по индексу, находятся в корзине")
     public void buyProducts() {
         openSaucedemo();
         loginPage.login("standard_user", "secret_sauce");
@@ -19,7 +19,7 @@ public class SauceCartTest extends BaseTest {
         assertTrue(cartPage.getProducts().contains("Test.allTheThings() T-Shirt (Red)"));
     }
 
-    @Test
+    @Test(description = "проверка, что добавленные в корзину товары по названию продукта, находятся в корзине")
     public void buyProductsStringFormat() {
         openSaucedemo();
         loginPage.login("standard_user", "secret_sauce");

@@ -7,10 +7,10 @@ import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(description = "авторизация с корректными логин/пароль")
     public void correctLoginPageTest() {
         openSaucedemo();
-        assertEquals(loginPage.login("standard_user", "secret_sauce")
+        assertEquals(loginPage.login(userName, password)
                                 .getMessageProductPage(), "Products");
     }
 
@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "notCorrectLogData")
+    @Test(dataProvider = "notCorrectLogData", description = "авторизация с некорректными логин/пароль")
     public void lockedLogin(String username, String password, String expectedMessage) {
         openSaucedemo();
         loginPage.login(username, password);
