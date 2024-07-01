@@ -1,38 +1,33 @@
 package tests;
 
-import org.openqa.selenium.By;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-
 public class LoginTest extends BaseTest {
 
-    @Test
-    public void correctLogin() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        assertEquals(driver.findElement(By.cssSelector("[class=title]")).getText(), "Products");
+    @Test(description = "авторизация с корректными логин/пароль")
+    public void correctLoginPageTest() {
+        openSaucedemo();
+        loginPage.login(userName, password);
+        assertEquals(productPage.getMessageProductPage(), "Products");
     }
 
-    @Test
-    public void lockedLogin(){
-        loginPage.open();
-        loginPage.login("locked_out_user", "secret_sauce");
-        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'user has been locked')]")).getText(), "Epic sadface: Sorry, this user has been locked out.");
+    @DataProvider
+    public Object[][] notCorrectLogData() {
+        return new Object[][]{
+                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
+                {"standard_user", "secret", "Epic sadface: Username and password do not match any user in this service"},
+                {"standard_user", "", "Epic sadface: Password is required"}
+        };
     }
 
-    @Test
-    public void notCorrectPassword(){
-        loginPage.open();
-        loginPage.login("standard_user", "secret");
-        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'password do not match')]")).getText(), "Epic sadface: Username and password do not match any user in this service");
+    @Test(dataProvider = "notCorrectLogData", description = "авторизация с некорректными логин/пароль")
+    public void lockedLogin(String username, String password, String expectedMessage) {
+        openSaucedemo();
+        loginPage.login(username, password);
+        assertEquals(loginPage.getErrorMessage(), expectedMessage);
     }
 
-    @Test
-    public void emptyPassword(){
-        loginPage.open();
-        loginPage.login("standard_user", "");
-        assertEquals(driver.findElement(By.xpath("//h3[contains(text(),'Password is required')]")).getText(), "Epic sadface: Password is required");
-    }
 }
