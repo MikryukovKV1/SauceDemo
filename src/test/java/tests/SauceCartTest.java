@@ -9,7 +9,7 @@ public class SauceCartTest extends BaseTest {
     @Test(description = "проверка, что добавленные в корзину товары по индексу, находятся в корзине")
     public void buyProducts() {
         openSaucedemo();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(userName, password);
         productPage.addToCart(0);
         productPage.addToCart(3);
         productPage.addToCart(5);
@@ -22,7 +22,7 @@ public class SauceCartTest extends BaseTest {
     @Test(description = "проверка, что добавленные в корзину товары по названию продукта, находятся в корзине")
     public void buyProductsStringFormat() {
         openSaucedemo();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(userName, password);
         productPage.addToCart("Sauce Labs Backpack");
         productPage.addToCart("Sauce Labs Fleece Jacket");
         productPage.addToCart("Test.allTheThings() T-Shirt (Red)");
